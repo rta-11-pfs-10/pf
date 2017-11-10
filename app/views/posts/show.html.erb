@@ -1,25 +1,52 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<h2><b class="red-text">/</b><b class="blue-text">/</b> <%= @post.title.upcase %></h2>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<!--<p style ="color:white;font-size:120%;" <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Back', posts_path %></p>-->
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="article-content">
+  <div class="article-img" style="background-image: url('<%= @post.thumbnail %>')"></div>
+  <% for paragraph in @paragraphs %>
+    <p class="article-text">
+      <% (0..paragraph[0].length - 1).each do |i| %>
+        <%= paragraph[0][i] %>
+        <b><%= paragraph[1][i] %></b>
+      <% end %>
+      <%= paragraph[1][paragraph[0].length - 1] %>
+    </p>
+    <br>
+  <% end %>
+</div>
 
-<h2> Comments </h2>
-<div id='comments' >
-  <%= render @post.comments %>
+<!---link_to 'Share', --->
+
+<br style="clear: left;">
+<h2 ><b class="red-text">/</b><b class="blue-text">/</b> COMMENTS</h2>
+<div id='comments'>
+  <% offset = 20 %>
+  <% for comment in @allComments %>
+    <div class="comment-group">
+      <div class="comment" style="margin-left: <%= offset * comment[0] %>px">
+          <div class="comment-text" style="width: <%= 650 - offset * comment[0] %>px"><%= comment[1].body %></div>
+          <% Time.zone_offset('EST') %>
+          <% if comment[1].created_at.getlocal('-05:00').strftime("%m/%d/%y") == Time.now.getlocal('-05:00').strftime("%m/%d/%y") then %>
+            <div class="comment-time"><%= comment[1].created_at.getlocal('-05:00').strftime("%l:%M %p") %></div>
+          <% else  %>
+            <div class="comment-time"><%= comment[1].created_at.getlocal('-05:00').strftime("%m/%d/%y") %></div>
+          <% end %>
+      </div>
+      <%= form_for [@post, @post.comments.new] do |f| %>
+        <%= hidden_field_tag 'parent_id', comment[1].id.to_s %>
+        <%= hidden_field_tag 'depth', (comment[0] + 1).to_s %>
+        <%= f.text_area :body, :class => "new-comment-text", placeholder: "Add a comment...", style: "margin-left: " + (offset + offset * comment[0]).to_s + "px; width: " + (690 - (offset + offset * comment[0])).to_s + "px; min-width: " + (690 - (offset + offset * comment[0])).to_s + "px; max-width: " + (690 - (offset + offset * comment[0])).to_s + "px;"  %>
+        <%= f.submit '+', :class => "new-comment-btn" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <%= form_for [@post, @post.comments.new] do |f| %>
-  <%= f.text_area :body %>
-  <br>
-  <%= f.submit %>
+  <%= hidden_field_tag 'parent_id', '' %>
+  <%= hidden_field_tag 'depth', '0' %>
+  <%= f.text_area :body, :class => "new-comment-text", placeholder: "Add a comment..." %>
+  <%= f.submit '+', :class => "new-comment-btn" %>
 <% end %>

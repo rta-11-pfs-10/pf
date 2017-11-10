@@ -13,3 +13,85 @@
  *= require_tree .
  *= require_self
  */
+ 
+body {
+    margin: 0;
+    background-image: url(../assets/pattern.png);
+    background-size: 15px 20px;
+    background-color: #caf5ff;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+}
+h1 {
+    font-size: 40px;
+    height: 40px;
+    color: #2a2a2a;
+    font-family: 'Barlow', sans-serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+}
+h2 {
+    font-size: 30px;
+    height: 40px;
+    color: #2a2a2a;
+    font-family: 'Barlow', sans-serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+}
+h3 {
+    font-size: 28px;
+    height: 40px;
+    color: #2a2a2a;
+    font-family: 'Barlow', sans-serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+}
+p {
+    font-size: 14px;
+    font-family: 'Barlow', sans-serif;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+input {
+    outline: none;
+}
+textarea {
+    outline: none;
+}
+a {
+    text-decoration: none;
+}
+
+.top-bar {
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #2a2a2a;
+    line-height: 80px;
+    font-size: 40px;
+    font-family: 'Barlow', sans-serif;
+}
+.content {
+    width: 800px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 0;
+    display: inline-block;
+    text-align: left;
+}
+
+.red-text {
+    color: #ff3250;
+}
+.blue-text {
+    color: #45d1fe;
+}
+
+.regular-link:hover {
+    background-color: rgba(0,0,0,0);
+}

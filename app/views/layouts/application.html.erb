@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog</title>
+    <title>Bright Post</title>
     <%= csrf_meta_tags %>
 
+    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <!--#94C9A9, #94C5CC-->
+    <!-- <img src="https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjWruukjbDXAhVBShQKHc1mBoMQjRwIBw&url=https%3A%2F%2Fwww.tripsavvy.com%2Fskiing-snowboarding-near-vancouver-3371332&psig=AOvVaw28NI2zefThp51Eyf3e5xUS&ust=1510269146155411" 
+    alt="Snowboarding in Vancouver"> -->
+    <!--add in black rectangle-->
+    <a href="/">
+      <div class="top-bar"><b style="color:#ff3250">BRIGHT</b> <b style="color:#45d1fe">POST</b></div>
+    </a>
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  
+
 
   # GET /posts
   # GET /posts.json
@@ -7,9 +9,48 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
+  # GET /posts/#
+  # GET /posts/#.json
   def show
+    @post = Post.find(params[:id])
+    paragraphs = @post.body.split('<paragraph>')
+    @paragraphs = []
+    for p in paragraphs do
+      bolds = p.scan(/\<b\>[a-zA-Z0-9 \“\”\'\’\"\,\.\—]*\<b\>/)
+      boldsFinal = []
+      regulars = p.split(/\<b\>[a-zA-Z0-9 \“\”\'\’\"\,\.\— ]*\<b\>/)
+      for bold in bolds do
+        boldsFinal.push(bold[3..-4])
+      end
+      @paragraphs.push([regulars, boldsFinal])
+    end
+    
+    allComments = Hash.new
+    topLevelComments = []
+    for comment in @post.comments do 
+      allComments[comment.id] = comment
+      if comment.is_top_level then
+        topLevelComments.push(comment)
+      end
+    end 
+    
+    @allComments = [] # [[depth, comment, parent_id], ...]
+    def addComment(comment, depth, parent_id, all_comments)
+      @allComments.push([depth, comment, parent_id])
+      if comment.children then
+        for subCommentKey in comment.children.split(",").reverse do
+          if subCommentKey != ''
+            addComment(all_comments[subCommentKey.gsub(/\s+/, "").to_i], depth + 1, comment.id, all_comments)
+          end
+        end
+      end
+    end
+    for comment in topLevelComments do
+      addComment(comment, 0, -1, allComments)
+    end
+    
+
+    
   end
 
   # GET /posts/new
@@ -60,6 +101,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +111,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :description, :thumbnail, :body)
     end
 end

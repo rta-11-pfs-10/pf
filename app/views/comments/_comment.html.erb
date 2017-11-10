@@ -1,1 +1,4 @@
-<p><%= comment.body %> -- <%= comment.created_at %></p>
+<div class="comment">
+    <div class="comment-text"><%= comment.body %></div>
+    <div class="comment-time"><%= Time.now.strftime("%m/%d/%y") %></div>
+</div>

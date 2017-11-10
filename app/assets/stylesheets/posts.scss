@@ -1,3 +1,159 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.spotlight {
+    width: 95.6%;
+    height: 250px;
+    background-color: #EEE;
+    overflow: hidden;
+    margin-bottom: 50px;
+    background-size: cover;
+    position: relative;
+}
+.spotlight-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -250px;
+    cursor: pointer;
+    cursor: hand;
+    transition: top 0.2s;
+}
+.spotlight-info:hover {
+    top: -190px;
+}
+.spotlight-title {
+    position: absolute;
+    top: 190px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding-left: 15px;
+    line-height: 60px;
+    font-size: 16px;
+    color: white;
+    font-weight: 800;
+    background-color: rgba(0,0,0,0.8);
+} 
+.spotlight-description {
+    position: absolute;
+    top: 250px;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    height: 160px;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+} 
+
+.article-thumbnail {
+    width: 29.47%;
+    margin-right: 3%;
+    margin-bottom: 25px;
+    height: 220px;
+    background-color: #EEE;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+}
+.article-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -220px;
+    cursor: pointer;
+    cursor: hand;
+    transition: top 0.2s;
+}
+.article-info:hover {
+    top: -160px;
+}
+.article-title {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding-left: 15px;
+    line-height: 60px;
+    font-size: 16px;
+    color: white;
+    font-weight: 800;
+    background-color: rgba(0,0,0,0.8);
+} 
+.article-description {
+    position: absolute;
+    top: 220px;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    height: 160px;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+} 
+.article-img {
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    float: left;
+}
+.article-text {
+    vertical-align: top;
+    margin-bottom: 0px;
+}
+
+
+
+.new-comment-text {
+    font-size: 14px;
+    background-color: #Eee;
+    padding: 14px;
+    border-radius: 4px;
+    text-align: left;
+    color: black;
+    display: inline-block;
+    font-size: 14px;
+    padding-bottom: 0px;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    width: 690px;
+    max-width: 690px;
+    min-width: 690px;
+    min-height: 34px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+.new-comment-btn {
+    border: none;
+    background-color: #45d1fe;
+    width: 48px;
+    height: 48px;
+    line-height: 40px;
+    color: white;
+    font-size: 30px;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: top;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    cursor: hand;
+}
+.new-comment-btn:hover {
+    background-color: #28abd6;
+}
+
+.comment-group {
+    transition: height 0.1s;
+    height: 55px;
+    overflow: hidden;
+}
+.comment-group:hover {
+    transition: height 0.1s;
+    height: 115px;
+}
